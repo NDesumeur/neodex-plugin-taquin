@@ -36,3 +36,9 @@ Records, nombre de grilles résolues et ton image sont enregistrés par NeoDex, 
 Dans NeoDex : **NeoStore → À découvrir → Taquin → Installer**.
 
 Développer un plugin : voir le [SDK NeoDex](https://github.com/NDesumeur/neodex-sdk).
+
+## Nouveau style et images toutes prêtes
+
+- **Le style des applis récentes** : cadres, boutons et police en pixel art, panneau des records (coups et temps pour chaque taille).
+- **À la taille de l'écran** : le plateau suit la fenêtre, du petit portable au grand écran, et se redessine quand on la redimensionne.
+- **Sept images en pixel art** : montagnes au couchant, phare la nuit, forêt d'automne, oasis, renard, poisson clown et tortue.

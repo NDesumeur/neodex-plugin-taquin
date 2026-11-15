@@ -36,3 +36,9 @@ Records, the number of solved grids and your picture are stored by NeoDex, backe
 In NeoDex: **NeoStore → Discover → Taquin → Install**.
 
 Building a plugin: see the [NeoDex SDK](https://github.com/NDesumeur/neodex-sdk).
+
+## New style and ready-made pictures
+
+- **The style of the recent apps**: pixel art frames, buttons and font, a records panel (moves and time for each size).
+- **Fits the screen**: the board follows the window, from a small laptop to a big screen, and redraws when you resize it.
+- **Seven pixel art pictures**: mountains at sunset, lighthouse at night, autumn forest, oasis, fox, clownfish and turtle.
