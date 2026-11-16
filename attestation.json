@@ -1,9 +1,9 @@
 {
   "pluginId": "neodex.taquin",
   "repo": "NDesumeur/neodex-plugin-taquin",
-  "version": "1.1.2",
-  "sha256": "ac314ea583f938f03e1fc3b267a2acb6a1ee9b7675c1099251a6be2a3945a6ca",
-  "approvedAt": "2026-11-08T12:10:50.659Z",
+  "version": "1.2.0",
+  "sha256": "e9743e13129b3d1280eac9e87afd3a64a53f340cc2548e69e392bf6b65684b70",
+  "approvedAt": "2026-11-16T04:14:39.936Z",
   "neobase": ">=4.0.0",
-  "signature": "YU08qNsxF6DNMYHzueyY1cHoHRTf3q32nJ/Q1HO4chTkihKz+kjCAfW3vVCb+3T8zkYaw3oGvRYiDs7uYOn6BQ=="
+  "signature": "bFbjpmlm5gEFJ61iOA4SjprGuO8Wmpb38gNihl1UPrVIP9m22F0521CAxKmGJzj3YTh7wtox2z848in1Xo5NCw=="
 }
