@@ -19,7 +19,6 @@
  "Phare la nuit": "Lighthouse at night",
  "Poisson clown": "Clownfish",
  "RECORDS": "RECORDS",
- "Records de coups et de temps, et ton image.": "Moves and time records, and your picture.",
  "Renard": "Fox",
  "Résolu !": "Solved!",
  "Résolus": "Solved",
@@ -72,5 +71,6 @@
  "KDDDDDDK": "KDDDDDDK",
  "KDDHHDDK": "KDDHHDDK",
  "Escape": "Escape",
- "TAQUIN": "SLIDING PUZZLE"
+ "TAQUIN": "SLIDING PUZZLE",
+ "Rien n'est synchronisé : tes records restent sur cet appareil.": "Nothing is synced: your records stay on this device."
 }
