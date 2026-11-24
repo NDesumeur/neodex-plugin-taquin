@@ -4,6 +4,10 @@ Le jeu de pièces à faire glisser : une grille mélangée avec une case vide, �
 
 *English version: [README.en.md](README.en.md)*
 
+## Moyennes de 5 et de 12 (nouveau en 1.3.0)
+
+Comme en compétition : pour chaque taille, le dernier temps, la moyenne des 5 et des 12 derniers temps (sans le meilleur ni le pire), au dixième de seconde, et la meilleure moyenne jamais faite.
+
 ## Le but
 
 Faire glisser les pièces dans la case vide jusqu'à ce que la grille soit dans l'ordre (de 1 à la fin pour les chiffres, ou l'image reconstituée). Une pièce à sa place est marquée.

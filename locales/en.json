@@ -9,7 +9,6 @@
  "Image": "Picture",
  "Image illisible": "Unreadable image",
  "Images pixel art": "Pixel art pictures",
- "Le jeu de pièces à faire glisser, de 3 × 3 à 8 × 8 : remets dans l'ordre des chiffres, ton fond d'écran NeoDex ou ta propre image, à la souris (une ligne entière glisse d'un clic) ou aux flèches. Grilles toujours solubles, modèle visible en maintenant un bouton, numéros sur l'image en option ; record de coups et de temps pour chaque taille. Nouveau style pixel art, plateau à la taille de la fenêtre et sept images toutes prêtes en pixel art (paysages et animaux).": "The sliding tile game, from 3 × 3 to 8 × 8: put numbers, your NeoDex wallpaper or your own picture back in order, with the mouse (a whole row slides in one click) or the arrow keys. Grids that can always be solved, the model shown while you hold a button, optional numbers on the picture; a moves and time record for each size. New pixel art style, a board that fits the window and seven ready-made pixel art pictures (landscapes and animals).",
  "Maintenir : voir le modèle": "Maintain: see model",
  "Montagnes au couchant": "Mountains at sunset",
  "MÉLANGER": "MIX",
@@ -72,5 +71,18 @@
  "KDDHHDDK": "KDDHHDDK",
  "Escape": "Escape",
  "TAQUIN": "SLIDING PUZZLE",
- "Rien n'est synchronisé : tes records restent sur cet appareil.": "Nothing is synced: your records stay on this device."
+ "Rien n'est synchronisé : tes records restent sur cet appareil.": "Nothing is synced: your records stay on this device.",
+ "Moyenne de 5": "Average of 5",
+ "Moyenne de 12": "Average of 12",
+ "Dernier temps": "Last time",
+ "coup": "move",
+ "raté": "failed",
+ "image toute prête, un coup :": "ready-made image, one move:",
+ "le plateau dépasse la fenêtre ou reste petit :": "the board overflows the window or stays small:",
+ "vérification des moyennes": "averages check",
+ "plateau pas à jour :": "board not up to date:",
+ "moyenne de 5 :": "average of 5:",
+ "image pixel art, un coup · plateau de": "pixel art image, one move · board of",
+ "px dans": "px in",
+ "Le jeu de pièces à faire glisser, de 3 × 3 à 8 × 8 : remets dans l'ordre des chiffres, ton fond d'écran NeoDex ou ta propre image, à la souris (une ligne entière glisse d'un clic) ou aux flèches. Grilles toujours solubles, modèle visible en maintenant un bouton, numéros sur l'image en option ; record de coups et de temps pour chaque taille. Nouveau style pixel art, plateau à la taille de la fenêtre et sept images toutes prêtes en pixel art (paysages et animaux). Les moyennes de 5 et de 12 comme en compétition.": "The sliding tile game, from 3 × 3 to 8 × 8: put numbers, your NeoDex wallpaper or your own picture back in order, with the mouse (a whole row slides in one click) or the arrow keys. Grids that can always be solved, the model shown while you hold a button, optional numbers on the picture; a moves and time record for each size. New pixel art style, a board that fits the window and seven ready-made pixel art pictures (landscapes and animals). Averages of 5 and 12, as in competitions."
 }

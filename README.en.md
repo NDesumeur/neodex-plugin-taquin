@@ -4,6 +4,10 @@ The sliding tile game: a shuffled grid with one empty space, to put back in orde
 
 *Version française : [README.md](README.md)*
 
+## Averages of 5 and 12 (new in 1.3.0)
+
+As in competitions: for each size, the last time, the average of the last 5 and 12 times (without the best and the worst), to a tenth of a second, and the best average ever.
+
 ## The goal
 
 Slide tiles into the empty space until the grid is in order (1 to the end for numbers, or the picture put back together). A tile in its place is marked.

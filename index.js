@@ -375,7 +375,7 @@ function tqMove(pos) {
   sfx('click');
   if (tq.tiles.every((t, i) => t === i)) {
     tq.done = true; tq.secs = Math.round((Date.now() - tq.t0) / 1000);
-    const st = gstore('taquin', {done: 0}); st.done++;
+    const st = gstore('taquin', {done: 0}); st.done++; tqAddTime(st, n, (Date.now() - tq.t0) / 1000);
     const rec = best('taquin' + n, tq.moves, false); best('taquinT' + n, tq.secs, false); saveGames(); sfx('launch');
     if (rec) toast('Nouveau record : ' + tq.moves + ' coups');
   }
@@ -400,11 +400,21 @@ function tqRender() {
     if (t === n * n - 1) d.style.opacity = tq.done ? 1 : 0;
   }
   const rec = games.best['taquin' + n], secs = tq.done ? tq.secs : tq.t0 ? Math.round((Date.now() - tq.t0) / 1000) : 0;
-  $('tqInfo').textContent = (tq.done ? 'Résolu ! ' : '') + tq.moves + ' coups · ' + clock(secs) + ' · record ' + (rec ? rec + ' coups' : '—');
+  $('tqInfo').textContent = (tq.done ? 'Résolu ! ' : '') + tq.moves + (tq.moves > 1 ? ' coups · ' : ' coup · ') + clock(secs) + ' · record ' + (rec ? rec + (rec > 1 ? ' coups' : ' coup') : '—');
   tqStats();
 }
-function tqStats() {  // les records de chaque taille déjà résolue (coups et temps), puis le nombre de taquins résolus
-  const rows = [3, 4, 5, 6, 7, 8].filter(k => games.best['taquin' + k]).map(k => [k + ' × ' + k, games.best['taquin' + k] + ' coups · ' + clock(games.best['taquinT' + k] || 0)]);
+// les moyennes, comme en compétition : sur les 5 (ou 12) derniers temps d’une taille, on enlève le meilleur et le pire, et on fait la moyenne du reste
+const tqAvg = (a, k) => { if (a.length < k) return null; const l = a.slice(-k).sort((x, y) => x - y).slice(1, -1); return l.reduce((x, y) => x + y, 0) / l.length; };
+const tqClock = s => s == null ? '—' : Math.floor(s / 60) + ':' + (s % 60).toFixed(1).padStart(4, '0');
+function tqAddTime(st, n, secs) {  // on garde les 12 derniers temps de chaque taille, et la meilleure moyenne de 5 et de 12
+  const h = ((st.hist ??= {})[n] ??= []); h.push(Math.round(secs * 10) / 10); if (h.length > 12) h.shift();
+  const b = (st.bestAvg ??= {}), a5 = tqAvg(h, 5), a12 = tqAvg(h, 12);
+  if (a5 != null && !(b[n + ':5'] <= a5)) b[n + ':5'] = Math.round(a5 * 10) / 10; if (a12 != null && !(b[n + ':12'] <= a12)) b[n + ':12'] = Math.round(a12 * 10) / 10;
+}
+function tqStats() {  // les records de chaque taille déjà résolue (coups et temps), les moyennes de la taille en cours, puis le nombre de taquins résolus
+  const rows = [3, 4, 5, 6, 7, 8].filter(k => games.best['taquin' + k]).map(k => [k + ' × ' + k, games.best['taquin' + k] + (games.best['taquin' + k] > 1 ? ' coups · ' : ' coup · ') + clock(games.best['taquinT' + k] || 0)]);
+  const n = tq?.n, h = games.taquin?.hist?.[n] || [], b = games.taquin?.bestAvg || {};
+  if (n && h.length) rows.push(['Dernier temps (' + n + ' × ' + n + ')', tqClock(h[h.length - 1])], ['Moyenne de 5', tqClock(tqAvg(h, 5)) + (b[n + ':5'] != null ? ' (record ' + tqClock(b[n + ':5']) + ')' : '')], ['Moyenne de 12', tqClock(tqAvg(h, 12)) + (b[n + ':12'] != null ? ' (record ' + tqClock(b[n + ':12']) + ')' : '')]);
   rows.push(['Résolus', String(games.taquin?.done || 0)]);
   $('tqStats').replaceChildren(...rows.flatMap(([k, v]) => [el('span', '', k), el('b', '', v)]));
 }
@@ -500,6 +510,11 @@ function tqArt(i) {
   const seen = new Set(), bad = [];
   TQ_ART.forEach((f, i) => { const c = document.createElement('canvas'); c.width = c.height = 48; const g = c.getContext('2d'); f(g); const d = g.getImageData(0, 0, 48, 48).data; let empty = 0; for (let k = 3; k < d.length; k += 4) if (!d[k]) empty++; if (empty) bad.push(i + ' : ' + empty + ' pixels vides'); seen.add(c.toDataURL()); });
   console.assert(!bad.length && seen.size === TQ_ART.length && view.querySelectorAll('#tqSrc option[value^=px]').length === TQ_ART.length, 'taquin images', bad);
+}
+{  // vérification des moyennes : le meilleur et le pire temps ne comptent pas
+  const st = {}; [10, 20, 30, 40, 50].forEach(t => tqAddTime(st, 4, t)); const a = tqAvg(st.hist[4], 5);
+  for (let i = 0; i < 9; i++) tqAddTime(st, 4, 100); const ok = a === 30 && st.hist[4].length === 12 && st.bestAvg['4:5'] === 30 && tqAvg(st.hist[4], 12) === 89 && st.bestAvg['4:12'] === 74 && tqAvg([1, 2], 5) == null && tqClock(75.3) === '1:15.3';
+  console.assert(ok, 'taquin moyennes'); view.querySelector('#tqBoard').dataset.avgcheck = ok ? 'ok' : 'raté';
 }
 setInterval(() => { if (tq?.t0 && !tq.done && view.classList.contains('on')) tqRender(); }, 1000);
 $('tqNew').onclick = tqNew;
