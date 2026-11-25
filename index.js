@@ -316,6 +316,9 @@ export default async function (ctx) {
   const saveGames = () => { clearTimeout(gamesTimer); gamesTimer = setTimeout(() => { gamesTimer = null; folder.write('games', games).catch(() => {}); }, 500); };
   const best = (k, v, higher = true) => { const b = games.best[k]; if (b == null || (higher ? v > b : v < b)) { games.best[k] = v; saveGames(); return true; } return false; };
   const gstore = (k, init) => (games[k] ??= init);  // la section d'un jeu
+  // les trophées de NeoDex (3.4.8 et plus) : succès et records déclarés dans plugin.json ; sur un NeoDex plus ancien, rien ne se passe
+  const trophy = id => { ctx.games?.unlock(id).catch(() => {}); };
+  const trophyRecord = (id, v) => { if (v != null && Number.isFinite(+v)) ctx.games?.record(id, +v).catch(() => {}); };
 function gameLoop(st, appKey, update, draw) {
   cancelAnimationFrame(st.raf);
   const STEP = 1000 / 60; let acc = 0, last = performance.now();
@@ -376,7 +379,7 @@ function tqMove(pos) {
   if (tq.tiles.every((t, i) => t === i)) {
     tq.done = true; tq.secs = Math.round((Date.now() - tq.t0) / 1000);
     const st = gstore('taquin', {done: 0}); st.done++; tqAddTime(st, n, (Date.now() - tq.t0) / 1000);
-    const rec = best('taquin' + n, tq.moves, false); best('taquinT' + n, tq.secs, false); saveGames(); sfx('launch');
+    const rec = best('taquin' + n, tq.moves, false); best('taquinT' + n, tq.secs, false); if (tq.img) st.image = 1; saveGames(); sfx('launch'); tqTrophies();
     if (rec) toast('Nouveau record : ' + tq.moves + ' coups');
   }
   tqRender();
@@ -544,5 +547,13 @@ document.addEventListener('keydown', e => {
 });  // (non indenté : les textes sur plusieurs lignes restent exactement les tiens)
 $('tqBoard').__tq = {st: () => tq, move: p => tqMove(p), art: i => tqArt(i)};  // pour le test « local »
   // ---- fin ----
-  ctx.onOpen(() => tqSkyNow().then(() => { tq ? tqRender() : tqNew(); }));
+  // les trophées, tirés des statistiques et des records gardés (aussi à l'ouverture : ce qui a été fait avant compte)
+  function tqTrophies() {
+    const b = games.best, st = games.taquin || {}, d = st.done || 0, has = k => b['taquin' + k] != null;
+    for (const k of [3, 4, 5]) { trophyRecord('coups' + k, b['taquin' + k]); trophyRecord('temps' + k, b['taquinT' + k]); }
+    if (d >= 1 || [3, 4, 5, 6, 7, 8].some(has)) trophy('premier'); if (has(4)) trophy('quatre'); if (has(5)) trophy('cinq'); if (has(8)) trophy('geant');
+    if (st.image) trophy('image'); if (b.taquinT3 != null && b.taquinT3 < 30) trophy('eclair3'); if (b.taquinT4 != null && b.taquinT4 < 120) trophy('eclair4');
+    if (has(3) && b.taquin3 < 40) trophy('econome'); if (d >= 25) trophy('vingt5'); if (d >= 100) trophy('cent');
+  }
+  ctx.onOpen(() => tqSkyNow().then(() => { tq ? tqRender() : tqNew(); tqTrophies(); }));
 }

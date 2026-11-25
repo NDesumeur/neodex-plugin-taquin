@@ -1,7 +1,7 @@
 {
   "id": "neodex.taquin",
   "name": "Taquin",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "author": "NDesumeur",
   "description": "Le jeu de pièces à faire glisser, de 3 × 3 à 8 × 8 : remets dans l'ordre des chiffres, ton fond d'écran NeoDex ou ta propre image, à la souris (une ligne entière glisse d'un clic) ou aux flèches. Grilles toujours solubles, modèle visible en maintenant un bouton, numéros sur l'image en option ; record de coups et de temps pour chaque taille. Nouveau style pixel art, plateau à la taille de la fenêtre et sept images toutes prêtes en pixel art (paysages et animaux). Les moyennes de 5 et de 12 comme en compétition.",
   "icon": "icon.png",
@@ -22,5 +22,96 @@
   "sdk": "2.1.0",
   "permissions": [
     "storage"
+  ],
+  "succes": [
+    {
+      "id": "premier",
+      "nom": "Tout est à sa place",
+      "texte": "Résoudre un premier taquin"
+    },
+    {
+      "id": "quatre",
+      "nom": "Le classique",
+      "texte": "Résoudre un taquin 4 × 4"
+    },
+    {
+      "id": "cinq",
+      "nom": "Grand plateau",
+      "texte": "Résoudre un taquin 5 × 5"
+    },
+    {
+      "id": "geant",
+      "nom": "Patience infinie",
+      "texte": "Résoudre un taquin 8 × 8"
+    },
+    {
+      "id": "image",
+      "nom": "Le puzzle",
+      "texte": "Résoudre un taquin avec une image"
+    },
+    {
+      "id": "eclair3",
+      "nom": "Doigts agiles",
+      "texte": "Résoudre un 3 × 3 en moins de 30 secondes"
+    },
+    {
+      "id": "eclair4",
+      "nom": "Maître du glissement",
+      "texte": "Résoudre un 4 × 4 en moins de 2 minutes"
+    },
+    {
+      "id": "econome",
+      "nom": "Pas un coup de trop",
+      "texte": "Résoudre un 3 × 3 en moins de 40 coups",
+      "cache": true
+    },
+    {
+      "id": "vingt5",
+      "nom": "Habitué",
+      "texte": "Résoudre 25 taquins"
+    },
+    {
+      "id": "cent",
+      "nom": "Glisseur de légende",
+      "texte": "Résoudre 100 taquins"
+    }
+  ],
+  "records": [
+    {
+      "id": "coups3",
+      "nom": "3 × 3 (coups)",
+      "sens": "bas",
+      "format": "nombre"
+    },
+    {
+      "id": "temps3",
+      "nom": "3 × 3 (temps)",
+      "sens": "bas",
+      "format": "temps"
+    },
+    {
+      "id": "coups4",
+      "nom": "4 × 4 (coups)",
+      "sens": "bas",
+      "format": "nombre"
+    },
+    {
+      "id": "temps4",
+      "nom": "4 × 4 (temps)",
+      "sens": "bas",
+      "format": "temps"
+    },
+    {
+      "id": "coups5",
+      "nom": "5 × 5 (coups)",
+      "sens": "bas",
+      "format": "nombre"
+    },
+    {
+      "id": "temps5",
+      "nom": "5 × 5 (temps)",
+      "sens": "bas",
+      "format": "temps"
+    }
   ]
 }
